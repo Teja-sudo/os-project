@@ -1,0 +1,46 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#include<unistd.h>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	int n,Arrival_time=0;
+	cout<<setw(320)<<"Multilevel queue CPU scheduling algorithm\n";
+	cout<<"\n  Enter number of processess : ";
+	cin>>n;
+	int pid_pr[n],pbt[n];
+	cout<<"\n\n  ************* Note : Priority should be 1 to 15 **************** \n  ";
+	cout<<"1 to 5 considered as low priority\n6 to 10 considered as medium priority\n11 to 15 considered as high priority\n"
+	for(int i=0;i<n;i++)
+	{
+		cout<<"\n  enter priority number for p"<<i;
+		cin>>pid_pr[i];
+		cout<<"\n  enter burst time for p"<<i;
+		cin>>pbt[i];
+	}
+	vector<int> hpr_queue,mpr_queue,lpr_queue,q1,q2,q3,bt_lq,bt_mq,bt_hq;
+	for(int i1=0;i1<n;i1++)
+	{
+		if(pid_pr[i1]<=5)
+		{
+			lpr_queue.push_back(i1);
+			q1.push_back(i1);
+			bt_lq.push_back(pbt[i1]);
+		 } 
+		 if(pid_pr[i1]>=6 && pid_pr[i1]<=10)
+		 {
+		 	mpr_queue.push_back(i1);
+		 	q2.push_back(i1);
+		 	bt_mq.push_back(pbt[i1]);
+		 }
+		 if(pid_pr[i1]>=11)
+		 {
+		 	hpr_queue.push_back(i1);
+		 	q3.push_back(i1);
+		 	bt_mq.push_back(pbt[i1])
+		 }
+	}
+}
