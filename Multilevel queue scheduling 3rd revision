@@ -1,0 +1,110 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#include<unistd.h>
+#include<iomanip>
+using namespace std;
+int x=0,y=0,z=0,tq=0,ti=0;
+void pexecutor(vector<int> &hpr_queue,vector<int> &mpr_queue,vector<int> &lpr_queue,vector<int> &q1,vector<int> &q2,vector<int> &q3,vector<int> &vbt,vector<int> &TAT,vector<int> &CT)
+{
+	while(1)
+	{
+		if(hpr_queue.empty()==false)
+		{
+			for(int a0=0,a0<=10,a0++ )
+			{
+				if(tq==4)
+				{
+					int ref;
+					ref=hpr_queue.front();
+					hpr_queue.erase(hpr_queue.begin());
+					hpr_queue.push_back(ref);
+					tq=0;
+				}
+				if(vbt[hpr_queue.front()]!=0)
+				{
+					vbt[hpr_queue.front()]=vbt[hpr_queue.front()]-1;
+				}
+				if(vbt[hpr_queue.front()]==0)
+				{
+					hpr_queue.erase(hpr_queue.begin());
+				}
+			    tq++;
+				ti++;
+				sleep(1);
+			}
+		}
+		if(mpr_queue.empty()==false)
+		{
+			for(int a1=0,a1<=10,a1++ )
+			{
+				
+			}
+		}
+		if(lpr_queue.empty()==false)
+		{
+			for(int a2=0,a2<=10,a2++ )
+			{
+				
+			}
+		}
+	}
+}
+int main()
+{
+	int n,Arrival_time=0;
+	vector<int> hpr_queue,mpr_queue,lpr_queue,q1,q2,q3,bt_lq,bt_mq,bt_hq,TAT,CT,WT,vbt;
+	cout<<setw(320)<<"Multilevel queue CPU scheduling algorithm\n";
+	cout<<"\n  Enter number of processess : ";
+	cin>>n;
+	int pid_pr[n],pbt[n];
+	cout<<"\n\n  ************* Note : Priority should be 1 to 15 and higher the number higher the priority**************** \n  ";
+	cout<<"1 to 5 considered as low priority\n6 to 10 considered as medium priority\n11 to 15 considered as high priority\n"
+	for(int i=0;i<n;i++)
+	{
+		cout<<"\n  enter priority number for p"<<i;
+		cin>>pid_pr[i];
+		cout<<"\n  enter burst time for p"<<i;
+		cin>>pbt[i];
+		vbt.push_back(pbt[i]);
+	}
+	
+	for(int i1=0;i1<n;i1++)
+	{
+		TAT.push_back(i1);
+		CT.push_back(i1);
+        WT.push_back(i1);
+		if(pid_pr[i1]<=5)
+		{
+			lpr_queue.push_back(i1);
+			q1.push_back(i1);
+			//bt_lq.push_back(pbt[i1]);
+		 } 
+		 if(pid_pr[i1]>=6 && pid_pr[i1]<=10)
+		 {
+		 	mpr_queue.push_back(i1);
+		 	q2.push_back(i1);
+		 //	bt_mq.push_back(pbt[i1]);
+		 }
+		 if(pid_pr[i1]>=11)
+		 {
+		 	hpr_queue.push_back(i1);
+		 	q3.push_back(i1);
+		 //	bt_mq.push_back(pbt[i1])
+		 }
+	}
+	
+	for (int i = 0; i < mpr_queue.size()-1; i++) 
+   { 
+     for (int j = 0; j < mpr_queue.size()-i-1; j++) 
+     { 
+        if (pid_pr[mpr_queue[j]] < pid_pr[mpr_queue[j+1]]) 
+        { 
+           swap(mpr_queue[j], mpr_queue[j+1]); 
+           swap(q2[j], q2[j+1]);
+        } 
+     } 
+	pexecutor(hpr_queue,empr_queue,lpr_queue,hpr_queue,q1,q2,q3,bt_lq,bt_mq, bt_hq,TAT,WT);
+
+}
